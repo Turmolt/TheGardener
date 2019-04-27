@@ -8,7 +8,7 @@ namespace BackwardsCap
     {
         public override void Use(Vector3 wp)
         {
-            map.DigHole(wp);
+            if(map.DigHole(wp)) LifeCost();
         }
     }
 }

@@ -15,10 +15,10 @@ namespace BackwardsCap
 
         [SerializeField] private TileBase hole;
         [SerializeField] private TileBase planted;
+        [SerializeField] private TileBase watered;
 
         
         #region Limbs
-
         public bool PlantLimb(Vector2 pos)
         {
             if (CheckTile(pos,objectTilemap,"Hole"))
@@ -43,14 +43,29 @@ namespace BackwardsCap
 
         #endregion
         
-        #region Shovel
-        public void DigHole(Vector2 pos)
+        #region Tools
+
+        public bool WaterArea(Vector2 pos)
+        {
+            if (CheckTile(pos, objectTilemap, "Planted"))
+            {
+                objectTilemap.SetTile(Vector3Int.RoundToInt(pos),watered);
+                return true;
+            }
+
+            return false;
+        }
+        
+        public bool DigHole(Vector2 pos)
         {
             //check that there is no object on this tile, also that it is a "dirt" type
             if(CheckTile(pos,map,"Dirt")&&!CheckTile(pos,objectTilemap))
             {
                 objectTilemap.SetTile(Vector3Int.RoundToInt(pos),hole);
+                return true;
             }
+
+            return false;
         }
         
         #endregion
