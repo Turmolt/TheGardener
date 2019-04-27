@@ -10,7 +10,7 @@ namespace BackwardsCap
 
         public void Initialize()
         {
-            Debug.Log("Init");
+
         }
 
         public void Tick()

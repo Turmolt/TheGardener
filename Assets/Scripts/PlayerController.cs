@@ -42,12 +42,10 @@ namespace BackwardsCap
 
                 if (Holding != null)
                 {
-                    Debug.Log("Using Object");
                     Holding.Use(wp);
                 }
                 else
                 {
-                    Debug.Log("Interacting");
                     //first raycast under mouse to see if we are clicking on the map, or something collidable
                     Ray r = Camera.main.ScreenPointToRay(Input.mousePosition);
                     RaycastHit2D hit = Physics2D.Raycast(wp, Vector2.zero);
@@ -57,6 +55,10 @@ namespace BackwardsCap
                         {
                             Holding =hit.transform.GetComponent<GrabbableObject>();        
                             Holding.Pickup();
+                        }
+                        else if (hit.transform.CompareTag("Vendor"))
+                        {
+                            hit.transform.GetComponent<LimbVendor>().Buy();
                         }
                     }
                     else

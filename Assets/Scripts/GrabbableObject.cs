@@ -25,7 +25,8 @@ namespace BackwardsCap
         public virtual void Pickup()
         {
             transform.parent = hand;
-            transform.DOLocalMove(Vector3.zero, 0.5f);
+            transform.DOLocalRotate(new Vector3(0, 0, 30f), 0.25f);
+            transform.DOLocalMove(Vector3.zero, 0.25f);
         }
 
         public virtual void Drop()
@@ -40,9 +41,11 @@ namespace BackwardsCap
             float duration = 0.5f;
             float t = 0f;
             Vector2 velocity = (transform.position.xy()-player.position).normalized/20f;
+            float rotMod = Random.Range(-1f, 1f);
             while (t < 1f)
             {
                 t=t.AddClamped(Time.deltaTime / duration,0f,1f);
+                transform.eulerAngles+=new Vector3(0f,0f,rotMod*velocity.x*100f*(1f-t));
                 transform.position += velocity.xyz() * (1f - t);
                 yield return 0f;
             }

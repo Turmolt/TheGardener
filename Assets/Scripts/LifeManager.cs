@@ -9,8 +9,9 @@ namespace BackwardsCap{
     {
         [Inject(Id = "Life")] private Image lifeGauge;
 
-        private float maxLife=100f;
+        private float maxLife=25f;
         private float currentLife;
+        public float CurrentLife => currentLife;
 
         public void Initialize()
         {
