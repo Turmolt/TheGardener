@@ -10,6 +10,28 @@ namespace BackwardsCap
     {
         protected bool isPlanted = false;
         [Inject] protected PlayerController player;
+        [Inject] protected DayManager day;
+        
+
+        protected float currentValue=1;
+        
+        void Start()
+        {
+            day.DayPassedEvent += Grow;
+        }
+
+        public void Grow()
+        {
+            if (map.CheckPlant(transform.position))
+            {
+                currentValue++;
+                Debug.Log(name+" grows");
+            }
+            else
+            {
+                Debug.Log(name+" wasn't watered!");
+            }
+        }
         
         public override void Pickup()
         {

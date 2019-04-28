@@ -70,6 +70,11 @@ namespace BackwardsCap
         
         #endregion
 
+        public bool CheckPlant(Vector2 pos)
+        {
+            return CheckTile(pos, objectTilemap, "Watered");
+        }
+
         private bool CheckTile(Vector2 pos, Tilemap tilemap, string tileType=null)
         {
             bool result = false;
