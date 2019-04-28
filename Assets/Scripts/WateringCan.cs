@@ -10,10 +10,11 @@ namespace BackwardsCap
         [Inject(Id = "Left Hand")] private Transform leftHand;
         [SerializeField] private Transform handle;
 
-        public override void Pickup()
+        public override bool Pickup()
         {
             hand = leftHand;
-            base.Pickup(-handle.localPosition);
+            
+            return base.Pickup(-handle.localPosition);
         }
 
         public override void Use(Vector3 wp)

@@ -6921,9 +6921,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf19a5eaab30e74fa768f255895cc49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dirt: {fileID: 11400000, guid: 854d189170b513048a3f7068a7dd20ce, type: 2}
   hole: {fileID: 11400000, guid: 653a37fad63402c4b959f299310acfb2, type: 2}
   planted: {fileID: 11400000, guid: 11acc31a9b7ecde45b1fad8d4e589dbe, type: 2}
   watered: {fileID: 11400000, guid: 2c3f26957c82b574f9f719ce36cf3714, type: 2}
+  blood: {fileID: 11400000, guid: a4a748999ccdca445950d6c0ee4ebf7d, type: 2}
 --- !u!114 &1960044452
 MonoBehaviour:
   m_ObjectHideFlags: 0

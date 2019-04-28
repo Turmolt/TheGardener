@@ -13,17 +13,19 @@ namespace BackwardsCap
         [Inject] private Tilemap map;
         [Inject(Id="Object Tilemap")] private Tilemap objectTilemap;
 
+        [SerializeField] private TileBase dirt;
         [SerializeField] private TileBase hole;
         [SerializeField] private TileBase planted;
         [SerializeField] private TileBase watered;
+        [SerializeField] private TileBase blood;
 
         
         #region Limbs
         public bool PlantLimb(Vector2 pos)
         {
-            if (CheckTile(pos,objectTilemap,"Hole"))
+            if (CheckTile(pos,objectTilemap,hole))
             {
-                objectTilemap.SetTile(Vector3Int.RoundToInt(pos),planted);
+                SetTile(objectTilemap, pos, planted);
                 return true;
             }
 
@@ -32,9 +34,9 @@ namespace BackwardsCap
         
         public bool PlantEye(Vector2 pos)
         {
-            if (CheckTile(pos,map,"Blood")&&!CheckTile(pos,objectTilemap))
+            if (CheckTile(pos,map,blood)&&!CheckTile(pos,objectTilemap))
             {
-                //objectTilemap.SetTile(Vector3Int.RoundToInt(pos),planted);
+                objectTilemap.SetTile(Vector3Int.RoundToInt(pos),planted);
                 return true;
             }
 
@@ -47,9 +49,9 @@ namespace BackwardsCap
 
         public bool WaterArea(Vector2 pos)
         {
-            if (CheckTile(pos, objectTilemap, "Planted"))
+            if (CheckTile(pos, objectTilemap, planted))
             {
-                objectTilemap.SetTile(Vector3Int.RoundToInt(pos),watered);
+                SetTile(objectTilemap,pos,watered);
                 return true;
             }
 
@@ -59,7 +61,7 @@ namespace BackwardsCap
         public bool DigHole(Vector2 pos)
         {
             //check that there is no object on this tile, also that it is a "dirt" type
-            if(CheckTile(pos,map,"Dirt")&&!CheckTile(pos,objectTilemap))
+            if(CheckTile(pos,map,dirt)&&!CheckTile(pos,objectTilemap))
             {
                 objectTilemap.SetTile(Vector3Int.RoundToInt(pos),hole);
                 return true;
@@ -67,15 +69,28 @@ namespace BackwardsCap
 
             return false;
         }
+
+        public void SetDirt(Vector2 pos)
+        {
+            SetTile(map,pos,dirt);
+        }
         
         #endregion
 
-        public bool CheckPlant(Vector2 pos)
+        public bool CheckPlant(Vector2 pos, bool removeWater=false)
         {
-            return CheckTile(pos, objectTilemap, "Watered");
+            var watered = CheckTile(pos, objectTilemap,this.watered);
+            if (watered && removeWater) SetTile(objectTilemap,pos,planted);
+            return watered;
         }
 
-        private bool CheckTile(Vector2 pos, Tilemap tilemap, string tileType=null)
+
+        private void SetTile(Tilemap tilemap, Vector2 pos, TileBase newTile)
+        {
+            tilemap.SetTile(Vector3Int.RoundToInt(pos),newTile);
+        }
+
+        private bool CheckTile(Vector2 pos, Tilemap tilemap, TileBase tileType=null)
         {
             bool result = false;
             var p = Vector3Int.RoundToInt(pos);
@@ -83,7 +98,7 @@ namespace BackwardsCap
 
             if (tileType != null)
             {
-                return t != null && t.name.ToLower().Contains(tileType.ToLower());
+                return t != null && t.name == tileType.name;
             }
             return t!=null;
         }

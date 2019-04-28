@@ -53,8 +53,8 @@ namespace BackwardsCap
                     {
                         if (hit.transform.CompareTag("Object"))
                         {
-                            Holding =hit.transform.GetComponent<GrabbableObject>();        
-                            Holding.Pickup();
+                            var g=hit.transform.GetComponent<GrabbableObject>();
+                            if (g.Pickup()) Holding = g;
                         }
                         else if (hit.transform.CompareTag("Vendor"))
                         {
@@ -91,8 +91,8 @@ namespace BackwardsCap
             if (Holding != null)
             {
                 if(tellObject)Holding.Drop();
-                Holding = null;
             }
+            Holding = null;
         }
         
         

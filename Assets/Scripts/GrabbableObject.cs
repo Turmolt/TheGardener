@@ -15,17 +15,20 @@ namespace BackwardsCap
 
         [SerializeField]protected ObjectModel model;
         
-        public virtual void Pickup(Vector3 offset)
+        public virtual bool Pickup(Vector3 offset)
         {
             transform.parent = hand;
             transform.DOLocalMove(offset, 0.5f);
+            transform.DOLocalRotate(new Vector3(0, 0, 0f), 0.25f);
+            return true;
         }
         
-        public virtual void Pickup()
+        public virtual bool Pickup()
         {
             transform.parent = hand;
             transform.DOLocalRotate(new Vector3(0, 0, 30f), 0.25f);
             transform.DOLocalMove(Vector3.zero, 0.25f);
+            return true;
         }
 
         public virtual void Drop()

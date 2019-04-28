@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using BackwardsCap;
 using UnityEngine;
 
 public static class Ext
@@ -12,6 +13,11 @@ public static class Ext
     public static Vector2 xy(this Vector3 _v)
     {
         return new Vector2(_v.x,_v.y);
+    }
+
+    public static BodyPartModel AsBodyPart(this ObjectModel _o)
+    {
+        return (BodyPartModel) _o;
     }
 
     public static float AddClamped(this float _f, float add,float min, float max)

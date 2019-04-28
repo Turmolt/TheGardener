@@ -9,22 +9,22 @@ namespace BackwardsCap
     public class BodyPart : GrabbableObject
     {
         protected bool isPlanted = false;
+        public bool IsPlanted => isPlanted;
         [Inject] protected PlayerController player;
         [Inject] protected DayManager day;
-        [SerializeField] private BodyPartModel model;
 
         protected float currentValue=1;
         
         void Start()
         {
             day.DayPassedEvent += Grow;
-            
+            currentValue = model.AsBodyPart().StartValue;
         }
 
         public void Grow()
         {
             if (!isPlanted) return;
-            if (map.CheckPlant(transform.position))
+            if (map.CheckPlant(transform.position,true))
             {
                 currentValue++;
                 Debug.Log(name+" grows");
@@ -35,14 +35,15 @@ namespace BackwardsCap
             }
         }
         
-        public override void Pickup()
+        public override bool Pickup()
         {
-            if (isPlanted) return;
+            if (isPlanted) return false;
             
-            base.Pickup();
+            return base.Pickup();
         }
         public void Plant(Vector3 wp)
         {
+            player.DropHolding(false);
             transform.DOPause();
             isPlanted = true;
             wp = Vector3Int.RoundToInt(wp);

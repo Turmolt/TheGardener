@@ -2,12 +2,18 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace BackwardsCap
 {
     [CreateAssetMenu(menuName="Models/Body Part Model",order=5)]
     public class BodyPartModel : ObjectModel
     {
+        /// <summary>
+        /// What is it worth to start?
+        /// </summary>
+        public float StartValue = 1;
+    
         /// <summary>
         /// How much does it increase each growth period?
         /// </summary>
