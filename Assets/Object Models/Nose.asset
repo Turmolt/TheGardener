@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Nose
   m_EditorClassIdentifier: 
   LaborCost: 0.5
-  Growth: 0.5
+  Part: 2
+  StartValue: 1
+  Growth: 1
   Days: 2
-  Reward: 1.5
+  Reward: 2

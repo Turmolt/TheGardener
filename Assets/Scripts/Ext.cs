@@ -20,6 +20,11 @@ public static class Ext
         return (BodyPartModel) _o;
     }
 
+    public static BodyPart AsBodyPart(this GrabbableObject _g)
+    {
+        return (BodyPart) _g;
+    }
+
     public static float AddClamped(this float _f, float add,float min, float max)
     {
         var _float = _f + add;

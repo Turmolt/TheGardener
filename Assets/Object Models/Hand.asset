@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Hand
   m_EditorClassIdentifier: 
   LaborCost: 2
+  Part: 0
+  StartValue: 1
   Growth: 1.5
-  Days: 3
-  Reward: 3
+  Days: 2
+  Reward: 2
