@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074, b: 0.35872698, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2066,10 +2066,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPosition: {fileID: 1331004924}
-  hand: {fileID: 5148044254861294601, guid: b85ad76fede95f540889c15738198bf2, type: 3}
-  foot: {fileID: 262969724098898753, guid: 7cfbe3230a021f24183e89744260ba0b, type: 3}
-  nose: {fileID: 7299014972407254161, guid: bfa4b5b6aa0da5740a343780a3660391, type: 3}
-  eye: {fileID: 2457097101799437389, guid: 7eb70adbae69cb44ca1e6bdd1f0ecd2b, type: 3}
 --- !u!4 &303387501
 Transform:
   m_ObjectHideFlags: 0
@@ -5971,6 +5967,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 767455528}
+  - component: {fileID: 767455529}
+  - component: {fileID: 767455530}
   m_Layer: 0
   m_Name: Logic
   m_TagString: Untagged
@@ -5993,6 +5991,48 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &767455529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767455527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dced9d94c7bd495ba3188e165c31870, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Parts:
+  - Part: 0
+    Prefab: {fileID: 5148044254861294601, guid: b85ad76fede95f540889c15738198bf2,
+      type: 3}
+  - Part: 1
+    Prefab: {fileID: 262969724098898753, guid: 7cfbe3230a021f24183e89744260ba0b, type: 3}
+  - Part: 2
+    Prefab: {fileID: 7299014972407254161, guid: bfa4b5b6aa0da5740a343780a3660391,
+      type: 3}
+  - Part: 3
+    Prefab: {fileID: 2457097101799437389, guid: 7eb70adbae69cb44ca1e6bdd1f0ecd2b,
+      type: 3}
+--- !u!114 &767455530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767455527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0166d8ff8d905b048b2448179e1f5d11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _components:
+  - {fileID: 767455529}
+  _identifier: 
+  _useSceneContext: 0
+  _context: {fileID: 0}
+  _bindType: 0
 --- !u!1 &873624256
 GameObject:
   m_ObjectHideFlags: 0

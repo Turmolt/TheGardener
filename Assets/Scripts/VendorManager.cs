@@ -8,7 +8,8 @@ namespace BackwardsCap
     public class VendorManager : MonoBehaviour
     {
         [Inject] private LifeManager lifeManager;
-        [Inject] private DiContainer container;
+
+        [Inject] private PartSpawner spawner;
 
         private Dictionary<Part, float> PartCost = new Dictionary<Part, float>
         {
@@ -18,28 +19,8 @@ namespace BackwardsCap
             [Part.Eye] = 1.0f
         };
 
-        private Dictionary<Part, GameObject> PartPrefab;
-        
         [SerializeField] private Transform spawnPosition;
 
-        [SerializeField] private GameObject hand;
-        
-        [SerializeField] private GameObject foot;
-        
-        [SerializeField] private GameObject nose;
-        
-        [SerializeField] private GameObject eye;
-
-        void Start()
-        {
-            PartPrefab = new Dictionary<Part, GameObject>
-            {
-                [Part.Hand] = hand,
-                [Part.Foot] = foot,
-                [Part.Nose] = nose,
-                [Part.Eye] = eye
-            };
-        }
 
 
         public void BuyPart(Part part)
@@ -49,11 +30,7 @@ namespace BackwardsCap
             {
                 lifeManager.Subtract(cost);
 
-
-                var lg = Instantiate(PartPrefab[part], spawnPosition.position, Quaternion.identity);
-                var limb = lg.GetComponent<BodyPart>(); 
-                container.Inject(limb);
-            
+                spawner.SpawnParts(part,1,spawnPosition.position,false);
             }
         }
     }

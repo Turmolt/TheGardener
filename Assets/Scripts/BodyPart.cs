@@ -14,6 +14,7 @@ namespace BackwardsCap
         [Inject] protected DayManager day;
 
         protected float currentValue=1;
+        protected float daysPlanted = 0f;
         
         void Start()
         {
@@ -26,13 +27,20 @@ namespace BackwardsCap
             if (!isPlanted) return;
             if (map.CheckPlant(transform.position,true))
             {
-                currentValue++;
+                currentValue+=model.AsBodyPart().Growth;
                 Debug.Log(name+" grows");
             }
             else
             {
                 Debug.Log(name+" wasn't watered!");
             }
+        }
+
+        public void Harvest()
+        {
+            if (!isPlanted || daysPlanted < model.AsBodyPart().Days) return;
+            
+            
         }
         
         public override bool Pickup()
