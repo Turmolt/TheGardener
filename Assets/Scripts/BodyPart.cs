@@ -11,17 +11,19 @@ namespace BackwardsCap
         protected bool isPlanted = false;
         [Inject] protected PlayerController player;
         [Inject] protected DayManager day;
-        
+        [SerializeField] private BodyPartModel model;
 
         protected float currentValue=1;
         
         void Start()
         {
             day.DayPassedEvent += Grow;
+            
         }
 
         public void Grow()
         {
+            if (!isPlanted) return;
             if (map.CheckPlant(transform.position))
             {
                 currentValue++;

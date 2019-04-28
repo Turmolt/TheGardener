@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62f8c7de0777d00469443bb1a16eddc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  model: {fileID: 11400000, guid: 3db1b30af6d368d4e9e1a99345fddbe0, type: 2}
   dismembered: {fileID: 310640117540109388}
   planted: {fileID: 8429214498814396738}
 --- !u!1 &8429214498814396738

@@ -13,8 +13,7 @@ namespace BackwardsCap
         [Inject] private Rigidbody2D player;
         [Inject] private LifeManager lifeManager;
 
-        //life drain on use
-        private float lifeCost = 1f;
+        [SerializeField]protected ObjectModel model;
         
         public virtual void Pickup(Vector3 offset)
         {
@@ -60,7 +59,7 @@ namespace BackwardsCap
 
         public virtual void LifeCost()
         {
-            lifeManager.Subtract(lifeCost);
+            lifeManager.Subtract(model.LaborCost);
         }
     }
 }

@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 2457097101799437389, guid: 7eb70adbae69cb44ca1e6bdd1f0ecd2b,
         type: 3}
       propertyPath: m_Name
-      value: Nose
+      value: Nose Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2457097101799437385, guid: 7eb70adbae69cb44ca1e6bdd1f0ecd2b,
         type: 3}
@@ -66,6 +66,23 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2457097101799437384, guid: 7eb70adbae69cb44ca1e6bdd1f0ecd2b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7323ea040a165a840aff8b6cbce05c66,
+        type: 3}
+    - target: {fileID: 2457097101799437391, guid: 7eb70adbae69cb44ca1e6bdd1f0ecd2b,
+        type: 3}
+      propertyPath: model
+      value: 
+      objectReference: {fileID: 11400000, guid: 6baf4fe2be805b44c9e83c11026c4c64,
+        type: 2}
+    - target: {fileID: 2457097101799437390, guid: 7eb70adbae69cb44ca1e6bdd1f0ecd2b,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.21875
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7eb70adbae69cb44ca1e6bdd1f0ecd2b, type: 3}
