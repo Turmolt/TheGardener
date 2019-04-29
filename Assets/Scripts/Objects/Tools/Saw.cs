@@ -8,9 +8,9 @@ namespace BackwardsCap{
     public class Saw : GrabbableObject
     {
         public Transform handle;
-        public override void Use(BodyPart bp)
+        public override void Use(GrabbableObject bp)
         {
-            bp.Harvest();
+            bp.AsBodyPart().Harvest();
         }
 
         public override bool Pickup()

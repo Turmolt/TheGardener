@@ -13,7 +13,8 @@ namespace BackwardsCap
         [Inject] private Rigidbody2D playerRB;
         [Inject] private MapManager map;
         private float speed = 3f;
-        
+
+        [Inject] private TextBubble textBubble;
         
         private Vector2 movement;
         
@@ -31,6 +32,14 @@ namespace BackwardsCap
         // Update is called once per frame
         void Update()
         {
+            
+            
+        
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                textBubble.StartText(new string[]{"Hello there young gardener! Your presence has been","Requested at the hall of limbs!"});
+            }
+        
             Movement();
             
             MouseHandler();
@@ -42,16 +51,18 @@ namespace BackwardsCap
             cursor.transform.position = Vector3Int.RoundToInt(new Vector3(wp.x,wp.y,cZ));
             if (Input.GetMouseButtonDown(0))
             {
+                Ray r = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit2D hit = Physics2D.Raycast(wp, Vector2.zero);
 
                 if (Holding != null&&Holding.UseOnMap)
                 {
-                    Holding.Use(wp);
+                    if(hit.transform!=null)Holding.Use(hit.transform.GetComponent<GrabbableObject>());
+                    if(Holding!=null) Holding.Use(wp);
                 }
                 else
                 {
                     //first raycast under mouse to see if we are clicking on the map, or something collidable
-                    Ray r = Camera.main.ScreenPointToRay(Input.mousePosition);
-                    RaycastHit2D hit = Physics2D.Raycast(wp, Vector2.zero);
+                    
                     if (hit.transform != null)
                     {
                         if (hit.transform.CompareTag("Object"))
@@ -60,7 +71,7 @@ namespace BackwardsCap
                             var g=hit.transform.GetComponent<GrabbableObject>();
                             if (Holding != null && !Holding.UseOnMap)
                             {
-                                Holding.Use(g.AsBodyPart());
+                                Holding.Use(g);
                             }
                             else if (g.Pickup()) Holding = g;
                         }

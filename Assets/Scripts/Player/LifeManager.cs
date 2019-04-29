@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -8,8 +9,11 @@ namespace BackwardsCap{
     public class LifeManager : IInitializable
     {
         [Inject(Id = "Life")] private Image lifeGauge;
+        [Inject(Id = "Life Gauge Current")] private TextMeshProUGUI currentLifeLabel;
+        [Inject(Id = "Life Gauge Max")] private TextMeshProUGUI maxLifeLabel;
 
-        private float maxLife=25f;
+
+        private float maxLife=10f;
         private float currentLife;
         public float CurrentLife => currentLife;
 
@@ -27,7 +31,6 @@ namespace BackwardsCap{
         
         public void RefreshLife(float percent)
         {
-            percent /= 100f;
 
             currentLife += maxLife * percent;
             currentLife = Mathf.Min(maxLife, currentLife);
@@ -46,6 +49,8 @@ namespace BackwardsCap{
         void RefreshHealBar()
         {
             lifeGauge.fillAmount = currentLife/maxLife;
+            currentLifeLabel.text = currentLife.ToString("0.0");
+            maxLifeLabel.text = maxLife.ToString("0.0");
         }
 
         

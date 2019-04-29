@@ -7,14 +7,15 @@ namespace BackwardsCap
 {
     public class Bed : MonoBehaviour
     {
+        [Inject] private LifeManager lifeManager;
         [Inject] private DayManager dayManager;
         
         public void OnTriggerEnter2D(Collider2D col)
         {
-            Debug.Log("Triggered!");
             if (col.CompareTag("Player"))
             {
                 dayManager.DayEnd();
+                lifeManager.RefreshLife(0.35f);
             }
         }
     }

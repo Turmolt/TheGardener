@@ -39,12 +39,11 @@ namespace BackwardsCap
             if (!isPlanted) return;
             if (map.CheckPlant(transform.position,true))
             {
-                currentValue+=model.AsBodyPart().Growth;
-                Debug.Log(name+" grows");
+                currentValue=currentValue.AddClamped(model.AsBodyPart().Growth,0f,model.AsBodyPart().Max);
+               
             }
             else
             {
-                Debug.Log(name+" wasn't watered!");
             }
 
             for (int i = 0; i < GrowingLimbs.Length; i++)
@@ -59,13 +58,21 @@ namespace BackwardsCap
         
         public virtual void Harvest()
         {
-            if (!isPlanted || daysPlanted < model.AsBodyPart().Days) return;
-            map.HarvestSpot(transform.position);
-            spawner.SpawnParts(model.AsBodyPart().Part,Mathf.FloorToInt(currentValue),transform.position,true);
-            Destroy(this.gameObject);
+            
 
         }
-        
+
+        public override void Use(GrabbableObject g)
+        {
+            if (g.GetType() == typeof(Blender))
+            {
+                
+                player.DropHolding(false);
+                ((Blender) g).Use(this);
+                Debug.Log("VVVRRRRRRRR");
+            }
+        }
+
         public override bool Pickup()
         {
             if (isPlanted) return false;

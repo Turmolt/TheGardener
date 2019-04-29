@@ -31,6 +31,6 @@ namespace BackwardsCap
         /// <summary>
         /// Parts returned per growth point
         /// </summary>
-        public int Reward = 2;
+        public int Max = 2;
     }
 }

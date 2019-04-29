@@ -61,7 +61,7 @@ namespace BackwardsCap
             
         }
         
-        public virtual void Use(BodyPart bp)
+        public virtual void Use(GrabbableObject g)
         {
             
         }
