@@ -42,7 +42,8 @@ namespace BackwardsCap
         {
             if (!isPlanted || daysPlanted < model.AsBodyPart().Days) return;
             map.HarvestSpot(transform.position);
-            spawner.SpawnParts(model.AsBodyPart().Part,Mathf.FloorToInt(currentValue),transform.position,true);
+            Debug.Log("Spawning:"+(int)currentValue);
+            spawner.SpawnParts(model.AsBodyPart().Part,(int)currentValue,transform.position,true);
             Destroy(this.gameObject);
         }
     }

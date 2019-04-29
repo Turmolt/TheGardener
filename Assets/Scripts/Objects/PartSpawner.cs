@@ -38,9 +38,6 @@ namespace BackwardsCap
             for (int i = 0; i < count; i++)
             {
                 var g = Instantiate(PartPrefabs[part], pos, Quaternion.Euler(0f, 0f, Random.Range(-45f, 45f)));
-                
-                //left/right limbs randomly!
-                g.transform.localScale = Random.Range(0, 10) % 2 == 0 ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
                 var limb = g.GetComponent<BodyPart>(); 
                 container.Inject(limb);
                 if(addForce) StartCoroutine(SpawnForce(g));

@@ -17,4 +17,4 @@ MonoBehaviour:
   StartValue: 1
   Growth: 1.5
   Days: 2
-  Max: 5
+  Max: 6

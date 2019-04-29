@@ -21,6 +21,9 @@ namespace BackwardsCap
         
         void Start()
         {
+        
+            //left/right limbs randomly!
+            transform.localScale = Random.Range(0, 10) % 2 == 0 ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
             for (int i = 0; i < GrowingLimbs.Length; i++)
             {
                 GrowingLimbs[i].SetActive(false);
@@ -48,9 +51,11 @@ namespace BackwardsCap
 
             for (int i = 0; i < GrowingLimbs.Length; i++)
             {
-                if (i >= currentValue-2) break;
+                if (i >= (int)currentValue-1) break;
                 GrowingLimbs[i].SetActive(true);
             }
+            
+            Debug.Log(currentValue);
 
             daysPlanted++;
         }
