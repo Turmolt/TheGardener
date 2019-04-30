@@ -41,8 +41,8 @@ namespace BackwardsCap
         public override void Harvest()
         {
             if (!isPlanted || daysPlanted < model.AsBodyPart().Days) return;
+            sfx.PlayAudio(sfx.Cut);
             map.HarvestSpot(transform.position);
-            Debug.Log("Spawning:"+(int)currentValue);
             spawner.SpawnParts(model.AsBodyPart().Part,(int)currentValue,transform.position,true);
             Destroy(this.gameObject);
         }

@@ -18,6 +18,8 @@ namespace BackwardsCap
         [SerializeField] private TileBase planted;
         [SerializeField] private TileBase watered;
         [SerializeField] private TileBase blood;
+        [SerializeField] private TileBase bloodPlanted;
+        [SerializeField] private TileBase bloodWatered;
 
         
         #region Limbs
@@ -36,7 +38,7 @@ namespace BackwardsCap
         {
             if (CheckTile(pos,map,blood)&&!CheckTile(pos,objectTilemap))
             {
-                objectTilemap.SetTile(Vector3Int.RoundToInt(pos),planted);
+                objectTilemap.SetTile(Vector3Int.RoundToInt(pos),bloodPlanted);
                 return true;
             }
 
@@ -61,6 +63,11 @@ namespace BackwardsCap
             if (CheckTile(pos, objectTilemap, planted))
             {
                 SetTile(objectTilemap,pos,watered);
+                return true;
+            }
+            else if (CheckTile(pos, objectTilemap, bloodPlanted))
+            {
+                SetTile(objectTilemap,pos,bloodWatered);
                 return true;
             }
 

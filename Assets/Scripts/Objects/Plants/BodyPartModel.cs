@@ -16,7 +16,7 @@ namespace BackwardsCap
         /// <summary>
         /// What is it worth to start?
         /// </summary>
-        public float StartValue = 1;
+        public float StartReturn = 1;
     
         /// <summary>
         /// How much does it increase each growth period?
@@ -32,5 +32,10 @@ namespace BackwardsCap
         /// Parts returned per growth point
         /// </summary>
         public int Max = 2;
+        
+        /// <summary>
+        /// Parts returned per growth point
+        /// </summary>
+        public float Value = 2;
     }
 }

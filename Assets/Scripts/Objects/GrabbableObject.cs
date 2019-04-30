@@ -11,8 +11,9 @@ namespace BackwardsCap
         public bool UseOnMap = true;
         [Inject(Id = "Hand")] protected Transform hand;
         [Inject] protected MapManager map;
-        [Inject] private Rigidbody2D player;
-        [Inject] private LifeManager lifeManager;
+        [Inject] protected Rigidbody2D playerRB;
+        [Inject] protected LifeManager lifeManager;
+        [Inject] protected SoundEffectManager sfx;
 
         [SerializeField]protected ObjectModel model;
         
@@ -43,7 +44,7 @@ namespace BackwardsCap
         {
             float duration = 0.5f;
             float t = 0f;
-            Vector2 velocity = (movement+(transform.position.xy()-player.position)).normalized/20f;
+            Vector2 velocity = (movement+(transform.position.xy()-playerRB.position)).normalized/20f;
             float rotMod = Random.Range(-1f, 1f);
             while (t < 1f)
             {

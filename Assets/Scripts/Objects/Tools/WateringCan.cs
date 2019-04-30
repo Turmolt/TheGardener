@@ -19,7 +19,11 @@ namespace BackwardsCap
 
         public override void Use(Vector3 wp)
         {
-            if(map.WaterArea(wp)) LifeCost();
+            if (map.WaterArea(wp))
+            {
+                sfx.PlayAudio(sfx.Water);
+                LifeCost();
+            }
         }
     }
 }

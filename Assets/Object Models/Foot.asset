@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LaborCost: 4
   Part: 1
-  StartValue: 1
-  Growth: 0.5
+  StartReturn: 1
+  Growth: 1
   Days: 4
-  Max: 5
+  Max: 4
+  Value: 5

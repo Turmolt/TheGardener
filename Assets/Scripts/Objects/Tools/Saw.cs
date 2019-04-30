@@ -10,14 +10,15 @@ namespace BackwardsCap{
         public Transform handle;
         public override void Use(GrabbableObject bp)
         {
-            bp.AsBodyPart().Harvest();
+            if (bp.GetType() == (typeof(BodyPart)) || bp.GetType().IsSubclassOf(typeof(BodyPart)))
+            {
+                bp.AsBodyPart().Harvest();
+            }
         }
 
         public override bool Pickup()
         {
-
             return Pickup(-handle.localPosition);
-
         }
     }
 }

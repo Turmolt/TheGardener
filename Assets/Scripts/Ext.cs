@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using BackwardsCap;
+using TMPro;
 using UnityEngine;
 
 public static class Ext
@@ -29,5 +30,21 @@ public static class Ext
     {
         var _float = _f + add;
         return Mathf.Clamp(_float, min, max);
+    }
+    
+    public static IEnumerator FillText(this string newText, TextMeshProUGUI display, float delay = 0.15f)
+    {
+
+        int i = 0;
+        string s = "";
+        while (s !=newText)
+        {
+            s = newText.Substring(0, i++);
+            display.text = s;
+            yield return new WaitForSeconds(delay);
+                    
+                    
+        }
+        yield return 0;
     }
 }

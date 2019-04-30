@@ -10,6 +10,7 @@ namespace BackwardsCap
     {
         
         public GameObject[] GrowingLimbs;
+        public ParticleSystem ReadyParticleSystem;
         protected bool isPlanted = false;
         public bool IsPlanted => isPlanted;
         [Inject] protected PlayerController player;
@@ -18,6 +19,8 @@ namespace BackwardsCap
 
         protected float currentValue=1;
         protected float daysPlanted = 0f;
+
+        public float Value => model.AsBodyPart().Value;
         
         void Start()
         {
@@ -29,7 +32,8 @@ namespace BackwardsCap
                 GrowingLimbs[i].SetActive(false);
             }
             day.DayPassedEvent += Grow;
-            currentValue = model.AsBodyPart().StartValue;
+            currentValue = model.AsBodyPart().StartReturn;
+            ReadyParticleSystem.gameObject.SetActive(false);
         }
 
         void OnDisable()
@@ -54,10 +58,28 @@ namespace BackwardsCap
                 if (i >= (int)currentValue-1) break;
                 GrowingLimbs[i].SetActive(true);
             }
-            
-            Debug.Log(currentValue);
 
             daysPlanted++;
+
+            if (daysPlanted >= model.AsBodyPart().Days)
+            {
+                CheckGrowth();
+            }
+
+        }
+
+        private void CheckGrowth()
+        {   
+            ReadyParticleSystem.gameObject.SetActive(true);
+
+            bool canStillGrow = currentValue < model.AsBodyPart().Max;
+
+            var mainModule = ReadyParticleSystem.main;
+            mainModule.startColor = canStillGrow ? new Color(0.4f,0.4f,0.4f) : Color.white;
+            
+            var emissionModule = ReadyParticleSystem.emission;
+            emissionModule.rateOverTime = canStillGrow ? 2 : 8;
+
         }
 
         
@@ -86,6 +108,7 @@ namespace BackwardsCap
         }
         public void Plant(Vector3 wp)
         {
+            sfx.PlayAudio(sfx.Plant);
             player.DropHolding(false);
             transform.DOPause();
             isPlanted = true;

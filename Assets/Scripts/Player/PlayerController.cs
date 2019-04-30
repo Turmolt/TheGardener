@@ -14,6 +14,8 @@ namespace BackwardsCap
         [Inject] private MapManager map;
         private float speed = 3f;
 
+        [HideInInspector] public bool HasControl = true;
+
         [Inject] private TextBubble textBubble;
         
         private Vector2 movement;
@@ -22,24 +24,23 @@ namespace BackwardsCap
         private float cZ;
 
         [FormerlySerializedAs("HoldingRight")] [HideInInspector] public GrabbableObject Holding;
-
-        // Start is called before the first frame update
+        
         void Awake()
         {
             cZ = cursor.transform.position.z;
+            cursor.gameObject.SetActive(false);
+
+
         }
 
-        // Update is called once per frame
         void Update()
         {
-            
-            
-        
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (!HasControl)
             {
-                textBubble.StartText(new string[]{"Hello there young gardener! Your presence has been","Requested at the hall of limbs!"});
+                playerRB.velocity = Vector2.zero;
+                return;
             }
-        
+            
             Movement();
             
             MouseHandler();
@@ -47,6 +48,7 @@ namespace BackwardsCap
 
         void MouseHandler()
         {
+            cursor.gameObject.SetActive(true);
             var wp = (Camera.main.ScreenToWorldPoint(Input.mousePosition));
             cursor.transform.position = Vector3Int.RoundToInt(new Vector3(wp.x,wp.y,cZ));
             if (Input.GetMouseButtonDown(0))
@@ -77,7 +79,7 @@ namespace BackwardsCap
                         }
                         else if (hit.transform.CompareTag("Vendor"))
                         {
-                            hit.transform.GetComponent<LimbVendor>().Buy();
+                            hit.transform.GetComponent<LimbVendor>().Open();
                         }
                     }
                     else

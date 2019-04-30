@@ -9,7 +9,6 @@ namespace BackwardsCap
 {
     public class Eyeball : BodyPart
     {
-        [Inject] private PlayerController player;
         public override void Use(Vector3 wp)
         {
 
@@ -24,6 +23,7 @@ namespace BackwardsCap
         public override void Harvest()
         {
             if (!isPlanted || daysPlanted < model.AsBodyPart().Days) return;
+            sfx.PlayAudio(sfx.Cut);
             map.HarvestSpot(transform.position);
             spawner.SpawnParts(model.AsBodyPart().Part,Mathf.FloorToInt(currentValue),transform.position,true);
             Destroy(this.gameObject);
