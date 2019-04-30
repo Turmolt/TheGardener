@@ -51,7 +51,7 @@ namespace BackwardsCap
 
         public void HarvestSpot(Vector2 pos)
         {
-            if (CheckTile(pos, objectTilemap, planted) || CheckTile(pos, objectTilemap, watered))
+            if (CheckTile(pos, objectTilemap, planted) || CheckTile(pos, objectTilemap, watered)||CheckTile(pos, objectTilemap, bloodPlanted)||CheckTile(pos, objectTilemap, bloodWatered))
             {
                 SetTile(objectTilemap,pos,null);
             }
@@ -97,6 +97,8 @@ namespace BackwardsCap
         {
             var watered = CheckTile(pos, objectTilemap,this.watered);
             if (watered && removeWater) SetTile(objectTilemap,pos,planted);
+            if (!watered) watered = CheckTile(pos, objectTilemap, this.bloodWatered);
+            if (watered && removeWater) SetTile(objectTilemap, pos, bloodPlanted);
             return watered;
         }
 
