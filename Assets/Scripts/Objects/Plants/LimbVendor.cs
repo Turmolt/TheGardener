@@ -39,6 +39,7 @@ namespace BackwardsCap
         public void MouseHover(bool hovering)
         {
             mouseInsideMe = hovering;
+
         }
         
         public void Toggle(bool endState)

@@ -113,12 +113,16 @@ namespace BackwardsCap
         
         private void CheckClick()
         {
+
             if (!activeVendor.MouseInsideMe)
             {
+                Debug.Log(activeVendor.name);
                 activeVendor.Toggle(false);
                 activeVendor = null;
+                
             }
         }
+
     }
 
     public enum Part

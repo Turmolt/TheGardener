@@ -25,6 +25,8 @@ namespace BackwardsCap
         {
             player.HasControl = false;
             cg.alpha = 1f;
+            cg.interactable = true;
+            cg.blocksRaycasts = true;
             StartCoroutine(endText.FillText(text));
             Invoke("EnableRestartButton",1.5f);
         }

@@ -107,7 +107,7 @@ namespace BackwardsCap
             {
                 if(cam!=null) cam.Priority = 11;
                 int i = 0;
-                yield return new WaitForSeconds(0.25f);
+                yield return new WaitForSeconds(0.025f);
                 while (s != textToDisplay[index].Text)
                 {
                     if (Input.GetKeyDown(KeyCode.Space))

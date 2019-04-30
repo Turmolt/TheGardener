@@ -97,8 +97,9 @@ namespace BackwardsCap
         {
             var watered = CheckTile(pos, objectTilemap,this.watered);
             if (watered && removeWater) SetTile(objectTilemap,pos,planted);
-            if (!watered) watered = CheckTile(pos, objectTilemap, this.bloodWatered);
+            if (!watered){ watered = CheckTile(pos, objectTilemap, this.bloodWatered);
             if (watered && removeWater) SetTile(objectTilemap, pos, bloodPlanted);
+            }
             return watered;
         }
 

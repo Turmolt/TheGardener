@@ -852,7 +852,7 @@ GameObject:
   - component: {fileID: 61193966}
   - component: {fileID: 61193965}
   - component: {fileID: 61193964}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cursor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3165,8 +3165,8 @@ CanvasGroup:
   m_GameObject: {fileID: 212289862}
   m_Enabled: 1
   m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!114 &212289867
 MonoBehaviour:
@@ -10985,8 +10985,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.03299904, y: 0.7869997}
-  m_SizeDelta: {x: 500, y: 500}
+  m_AnchoredPosition: {x: -0.01, y: 0.792}
+  m_SizeDelta: {x: 109.8802, y: 213.7986}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1196883907
 MonoBehaviour:
